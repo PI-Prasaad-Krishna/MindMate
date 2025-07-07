@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
 
-## Project info
+# MindMate - Anonymous Mental Health Support App
 
-**URL**: https://lovable.dev/projects/ceab8768-cb6c-455e-8532-8b9f546b0143
+MindMate is a compassionate web application that provides anonymous mental health support through daily check-ins, sentiment analysis, peer chat, and mood tracking.
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+- **Daily Mental Health Check-ins**: Share your thoughts and receive personalized coping tips
+- **Sentiment Analysis**: AI-powered mood analysis using VADER sentiment analysis
+- **Anonymous Support Chat**: Connect with others in a safe, anonymous environment  
+- **Mood Tracking**: Visualize your emotional journey over the past 7 days
+- **Privacy-First**: No registration required, completely anonymous
 
-**Use Lovable**
+## 🚀 Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ceab8768-cb6c-455e-8532-8b9f546b0143) and start prompting.
+### Prerequisites
+- Node.js 16+ and npm
+- Modern web browser
 
-Changes made via Lovable will be committed automatically to this repo.
+### Local Development
 
-**Use your preferred IDE**
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd mindmate
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Install dependencies
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Visit `http://localhost:8080` to see the app.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🏗️ Architecture
 
-**Use GitHub Codespaces**
+### Current MVP (Local Storage)
+- **Frontend**: React + TypeScript + Vite
+- **UI**: shadcn/ui + Tailwind CSS
+- **Charts**: Recharts for mood visualization
+- **Storage**: LocalStorage (for MVP demo)
+- **Sentiment**: Custom VADER-like algorithm
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Production Roadmap
+- **Auth**: Firebase Anonymous Authentication
+- **Database**: Firebase Firestore
+- **Hosting**: Firebase Hosting
+- **API**: Python Flask with VADER sentiment analysis
 
-## What technologies are used for this project?
+## 📊 Data Structure
 
-This project is built with:
+### Mood Entries
+```typescript
+{
+  date: "2025-07-07",
+  score: -0.6,        // Sentiment score between -1 and 1
+  timestamp: 1704636000000
+}
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Chat Messages
+```typescript
+{
+  id: "unique-id",
+  nickname: "CalmTiger42",
+  message: "Having a tough day but staying strong",
+  timestamp: Date
+}
+```
 
-## How can I deploy this project?
+## 🛠️ Development
 
-Simply open [Lovable](https://lovable.dev/projects/ceab8768-cb6c-455e-8532-8b9f546b0143) and click on Share -> Publish.
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-## Can I connect a custom domain to my Lovable project?
+### Key Components
+- `src/pages/Index.tsx` - Main app with tabbed interface
+- `src/components/MoodChart.tsx` - Mood visualization component
+- `src/components/ChatRoom.tsx` - Real-time chat interface
+- `src/utils/sentimentAnalysis.ts` - Sentiment analysis logic
+- `src/utils/storage.ts` - Data persistence utilities
 
-Yes, you can!
+## 🚀 Deployment
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Firebase Hosting (Recommended)
+1. Install Firebase CLI: `npm install -g firebase-tools`
+2. Login: `firebase login`
+3. Initialize project: `firebase init hosting`
+4. Build: `npm run build`
+5. Deploy: `firebase deploy`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Alternative Platforms
+- **Vercel**: Connect GitHub repo for automatic deployments
+- **Netlify**: Drag and drop `dist` folder after `npm run build`
+
+## 🔒 Privacy & Security
+
+- No user registration or personal data collection
+- Anonymous nicknames generated randomly
+- All data stored locally (MVP) or anonymously (production)
+- No tracking or analytics that compromise privacy
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Optimized for phones, tablets, and desktop
+- Touch-friendly interface elements
+- Accessible color contrasts and typography
+
+## 🤝 Contributing
+
+This is an MVP built for demonstration. For production use:
+
+1. Implement Firebase Authentication & Firestore
+2. Add proper sentiment analysis API
+3. Implement content moderation for chat
+4. Add user reporting systems
+5. Enhanced accessibility features
+
+## 📄 License
+
+MIT License - feel free to use this code for educational or personal projects.
+
+## 🆘 Support
+
+If you're struggling with mental health:
+- In the US: National Suicide Prevention Lifeline: 988
+- In the UK: Samaritans: 116 123
+- International: befrienders.org
+
+Remember: This app is not a replacement for professional mental health care.
