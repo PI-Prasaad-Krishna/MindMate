@@ -27,44 +27,32 @@ type ChatMsg = {
 };
 
 export default function ChatRoom() {
-  /* ----------------------------------------------------------------
-     hooks & refs
-     ---------------------------------------------------------------- */
-  const { nickname } = useAuth();                  // from AuthProvider
+  const { nickname } = useAuth();
   const [messages, setMessages] = useState<ChatMsg[]>([]);
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  /* 🔄  realtime listener */
+  /* 🔄 realtime listener */
   useEffect(() => {
-    const q = query(
-      collection(db, "chatMessages"),
-      orderBy("createdAt", "asc")
-    );
+    const q = query(collection(db, "chatMessages"), orderBy("createdAt", "asc"));
     const unsub = onSnapshot(q, (snap) => {
-      setMessages(
-        snap.docs.map((d) => ({ id: d.id, ...(d.data() as ChatMsg) }))
-      );
-      // auto‑scroll
-      setTimeout(() => {
-        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 10);
+      setMessages(snap.docs.map((d) => ({ id: d.id, ...(d.data() as ChatMsg) })));
+      setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 20);
     });
     return unsub;
   }, []);
 
-  /* ➡️  send a message */
+  /* ➡️ send msg */
   const sendMessage = async () => {
     if (!input.trim()) return;
     await addDoc(collection(db, "chatMessages"), {
       nickname,
-      message: input.trim().slice(0, 500),          // 500‑char guard
+      message: input.trim().slice(0, 500),
       createdAt: serverTimestamp(),
     });
     setInput("");
   };
 
-  /* enter key helper */
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -87,7 +75,6 @@ export default function ChatRoom() {
      ---------------------------------------------------------------- */
   return (
     <Card className="h-96 flex flex-col bg-white/80 backdrop-blur-sm shadow-lg">
-      {/* header */}
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-teal-700">
           <MessageCircle className="h-5 w-5" />
@@ -99,10 +86,9 @@ export default function ChatRoom() {
         </CardTitle>
       </CardHeader>
 
-      {/* content */}
-      <CardContent className="flex-1 flex flex-col space-y-3">
-        {/* messages list */}
-        <div className="flex-1 overflow-y-auto space-y-2 p-2 bg-gray-50/60 rounded">
+      <CardContent className="flex-1 flex flex-col space-y-3 overflow-hidden">
+        {/* ── messages list ───────────────────────────────────────── */}
+        <div className="flex-1 min-h-0 overflow-y-auto space-y-2 p-2 bg-gray-50/60 rounded">
           {messages.length === 0 ? (
             <div className="text-center text-gray-500 py-8">
               <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
@@ -115,7 +101,7 @@ export default function ChatRoom() {
                 className={`flex ${isMine(m) ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-xs px-3 py-2 rounded-lg break-words ${
+                  className={`max-w-[80%] break-words px-3 py-2 rounded-lg ${
                     isMine(m)
                       ? "bg-teal-500 text-white"
                       : "bg-white border border-gray-200"
@@ -129,9 +115,7 @@ export default function ChatRoom() {
                     >
                       {m.nickname}
                     </span>
-                    <span
-                      className={isMine(m) ? "text-teal-200" : "text-gray-400"}
-                    >
+                    <span className={isMine(m) ? "text-teal-200" : "text-gray-400"}>
                       {formatTime(m)}
                     </span>
                   </div>
@@ -142,6 +126,7 @@ export default function ChatRoom() {
           )}
           <div ref={bottomRef} />
         </div>
+        {/* ─────────────────────────────────────────────────────────── */}
 
         {/* input */}
         <div className="flex gap-2">
