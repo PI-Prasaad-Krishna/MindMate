@@ -45,17 +45,13 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
-<<<<<<< HEAD
     "firebase": "^11.10.0",
-=======
->>>>>>> 721ad398eae03e1562b5004b37e33619b1625f11
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
-<<<<<<< HEAD
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.3",
@@ -65,15 +61,6 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vader-sentiment": "^1.1.3",
-=======
-    "react-hook-form": "^7.53.0",
-    "react-resizable-panels": "^2.1.3",
-    "react-router-dom": "^6.26.2",
-    "recharts": "^2.12.7",
-    "sonner": "^1.5.0",
-    "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
->>>>>>> 721ad398eae03e1562b5004b37e33619b1625f11
     "vaul": "^0.9.3",
     "zod": "^3.23.8"
   },
@@ -81,11 +68,7 @@
     "@eslint/js": "^9.9.0",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
-<<<<<<< HEAD
     "@types/react": "^18.3.23",
-=======
-    "@types/react": "^18.3.3",
->>>>>>> 721ad398eae03e1562b5004b37e33619b1625f11
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
